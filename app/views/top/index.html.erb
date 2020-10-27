@@ -45,7 +45,7 @@
     <div class="card-body">
       <h5 class="card-title">ユーザ一覧</h5>
       <p class="card-text">どんなユーザがいるのかを確認できます。みんなはどんなセリフを記録しているのかな。</p>
-      <button role="button" class="btn btn-dark" href="#">覗いてみる</button>
+      <%= link_to "覗いてみる", users_path, class: 'btn btn-dark' %>
     </div>
   </div>
   <div class="card">
@@ -61,11 +61,5 @@
 
 <p class="m-5">感動したセリフ、爆笑したセリフ、人生を変えたセリフ。<br>自分だけのセリフ集を作成しませんか。</p>
 
-<button role="button" class="btn btn-dark btn-lg" href="#">今すぐ登録する。</button>
+<%= link_to "今すぐ登録する。", signup_path, class: 'btn btn-dark btn-lg' %>
 </div>
-
-<footer class="footer">
-  <div class="container">
-    <p class="text-muted">© 2020 MySerif!</p>
-  </div>
-</footer>
