@@ -1,0 +1,18 @@
+<div class="text-center m-5">
+  <h1>セリフ詳細</h1>
+</div>
+
+<table class="table table-hover">
+  <tr><th>ジャンル</th><td><%= genre_id_myserif_path %></td></tr>
+  <tr><th>セリフ</th><td><%= @myserif.content %></td></tr>
+  <tr><th>映画タイトル</th><td><%= @myserif.title %></td></tr>
+  <tr><th>人物</th><td><%= @myserif.character %></td></tr>
+</table>
+<div class="row">
+    <% if current_user == @myserif.user %>
+        <div class="col-2"><%= link_to "セリフ削除", @myserif, method: :delete, data: { confirm: "本当に削除しても良いですか？" }, class: "btn btn-danger btn-sm" %></div>
+        <div class="col-2"><%= link_to 'マイページに戻る', user_path(current_user), class: 'btn btn-secondary btn-sm' %></div>
+    <% else %>
+        <div class="col-2"><%= link_to 'セリフ一覧へ戻る', myserifs_path, class: 'btn btn-secondary btn-sm' %></div>
+    <% end %>
+</div>

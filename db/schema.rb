@@ -10,7 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_26_015615) do
+ActiveRecord::Schema.define(version: 2020_10_29_122738) do
+
+  create_table "genres", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "category"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "myserif_id", null: false
+    t.index ["myserif_id"], name: "index_genres_on_myserif_id"
+  end
+
+  create_table "myserifs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "content"
+    t.string "title"
+    t.string "character"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "genre_id"
+    t.index ["user_id"], name: "index_myserifs_on_user_id"
+  end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -20,4 +39,6 @@ ActiveRecord::Schema.define(version: 2020_10_26_015615) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "genres", "myserifs"
+  add_foreign_key "myserifs", "users"
 end

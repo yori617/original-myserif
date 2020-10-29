@@ -1,4 +1,4 @@
-<div class="text-center">
+<div class="text-center m-5">
   <h1>Sign up</h1>
 </div>
 
@@ -30,7 +30,8 @@
 
       <%= f.submit 'Sign up', class: 'btn btn-dark btn-block' %>
     <% end %>
+    <div class="text-center m-5">
+      <p>登録済みなので<%= link_to "ログイン", login_path %>する。</p>
+    </div>
   </div>
 </div>
-
-

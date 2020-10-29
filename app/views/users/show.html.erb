@@ -4,16 +4,20 @@
       <div class="card-header">
         <h3 class="card-title"><%= @user.name %></h3>
       </div>
-      <div class="card-body">
-        <img class="rounded img-fluid" src="<%= gravatar_url(@user, { size: 500 }) %>" alt="">
+      <div class="card-body text-center">
+        <img class="rounded img-fluid m-5" src="<%= gravatar_url(@user, { size: 500 }) %>" alt="">
+        <% if @user == current_user %>
+          <%= link_to "セリフを投稿する", new_myserif_path, class: 'btn btn-dark' %>
+          <div class="m-3"><%= link_to 'ユーザ設定', edit_user_path, class: 'btn btn-secondary btn-sm' %></div>
+        <% end %>
       </div>
     </div>
   </aside>
   <div class="col-sm-8">
     <ul class="nav nav-tabs nav-justified mb-3">
-      <li class="nav-item"><a href="#" class="nav-link">Serifs</a></li>
+      <li class="nav-item"><a href="<%= user_path(@user) %>" class="nav-link <%= 'active' if current_page?(user_path(@user)) %>">Myserif <span class="badge badge-secondary"><%= @count_myserifs %></span></a></li>
       <li class="nav-item"><a href="#" class="nav-link">Favorites</a></li>
     </ul>
+    <%= render 'myserifs/myserifs', myserifs: @myserifs %>
   </div>
 </div>
-<%= render 'footer' %>
