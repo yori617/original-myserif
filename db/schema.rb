@@ -10,14 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_29_122738) do
+ActiveRecord::Schema.define(version: 2020_11_02_124148) do
 
-  create_table "genres", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "category"
+  create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "content"
+    t.bigint "user_id"
+    t.bigint "myserif_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "myserif_id", null: false
-    t.index ["myserif_id"], name: "index_genres_on_myserif_id"
+    t.index ["myserif_id"], name: "index_comments_on_myserif_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "favorites", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "myserif_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["myserif_id"], name: "index_favorites_on_myserif_id"
+    t.index ["user_id", "myserif_id"], name: "index_favorites_on_user_id_and_myserif_id", unique: true
+    t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
   create_table "myserifs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -28,6 +40,7 @@ ActiveRecord::Schema.define(version: 2020_10_29_122738) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "genre_id"
+    t.string "genre"
     t.index ["user_id"], name: "index_myserifs_on_user_id"
   end
 
@@ -39,6 +52,9 @@ ActiveRecord::Schema.define(version: 2020_10_29_122738) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "genres", "myserifs"
+  add_foreign_key "comments", "myserifs"
+  add_foreign_key "comments", "users"
+  add_foreign_key "favorites", "myserifs"
+  add_foreign_key "favorites", "users"
   add_foreign_key "myserifs", "users"
 end

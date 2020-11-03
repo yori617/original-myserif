@@ -6,13 +6,19 @@ Rails.application.routes.draw do
   delete 'logout', to: 'sessions#destroy'
   
   get 'signup', to: 'users#new'
-  #delete 'destroy_user', to: 'users#destroy'
   
-  resources :users, only: [:index, :show, :new, :create, :edit, :update, :destroy]
+  get 'search', to: 'myserifs#search'
   
-  resources :myserifs, only: [:index, :new, :create, :destroy, :edit, :update, :show] do
-    member do
-      get :genre_id
+  resources :users, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
+   member do
+      get :likes
     end
   end
+  
+  resources :myserifs, only: [:index, :new, :create, :destroy, :edit, :update, :show] do
+    resources :comments, only: [:create, :destroy]
+  end
+  
+  resources :favorites, only: [:create, :destroy]
+  
 end

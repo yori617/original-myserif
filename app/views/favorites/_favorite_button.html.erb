@@ -1,0 +1,13 @@
+<% if logged_in? %>
+<% if current_user.liked?(myserif) %>
+  <%= form_with(model: current_user.favorites.find_by(myserif_id: myserif.id), local: true, method: :delete) do |f| %>
+    <%= hidden_field_tag :myserif_id, myserif.id %>
+    <%= f.submit '💔いいね解除', class: 'btn btn-dark btn-sm' %>
+  <% end %>
+<% else %>
+  <%= form_with(model: current_user.favorites.build, local: true) do |f| %>
+    <%= hidden_field_tag :myserif_id, myserif.id %>
+    <%= f.submit '❤️いいね', class: 'btn btn-dark btn-sm' %>
+  <% end %>
+<% end %>
+<% end %>

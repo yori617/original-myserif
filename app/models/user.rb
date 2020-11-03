@@ -7,4 +7,22 @@ class User < ApplicationRecord
     has_secure_password
     
     has_many :myserifs, dependent: :destroy
+    
+    has_many :favorites, dependent: :destroy
+    has_many :likes, through: :favorites, source: :myserif
+    
+    has_many :comments, dependent: :destroy
+    
+    def favorite(myserif)
+        favorites.find_or_create_by(myserif_id: myserif.id)
+    end
+    
+    def unfavorite(myserif)
+        favorite = favorites.find_by(myserif_id: myserif.id)
+        favorite.destroy if favorite
+    end
+    
+    def liked?(myserif)
+        self.likes.include?(myserif)
+    end
 end

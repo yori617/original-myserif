@@ -1,9 +1,14 @@
 class MyserifsController < ApplicationController
   before_action :require_user_logged_in, except: [:index, :show]
-  before_action :correct_user, only: [:destroy]
+  before_action :correct_user, only: [:destroy, :edit, :update]
   
   def index
     @myserifs = Myserif.all.order(created_at: :desc)
+  end
+  
+  def search
+    @myserifs = Myserif.where('genre LIKE ?', "%#{params[:genre]}%")
+    render :index
   end
   
   def new
@@ -23,11 +28,11 @@ class MyserifsController < ApplicationController
   
   def edit
     @myserif = Myserif.find(params[:id])
-    #if @myserif.user == current_user
-      #render :edit
-    #else
-      #redirect_to myserif_path
-    #end
+    if @myserif.user == current_user
+      render :edit
+    else
+      redirect_to root_url
+    end
   end
   
   def update
@@ -43,7 +48,8 @@ class MyserifsController < ApplicationController
   
   def show
     @myserif = Myserif.find(params[:id])
-    #@genre = Genre.find(params[:id])
+    @comments = @myserif.comments.includes(:user).order(created_at: :desc)
+    @comment = Comment.new
   end
 
   def destroy
@@ -55,7 +61,7 @@ class MyserifsController < ApplicationController
   private
 
   def myserif_params
-    params.require(:myserif).permit(:content, :title, :character)
+    params.require(:myserif).permit(:content, :title, :character, :genre_id, :genre)
   end
   
   def correct_user

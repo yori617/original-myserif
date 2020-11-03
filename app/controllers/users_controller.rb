@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
-  before_action :require_user_logged_in, only: [:show, :destroy, :edit, :update]
+  before_action :require_user_logged_in, only: [:show, :destroy, :edit, :update, :likes]
   
   def index
-    @users = User.order(id: :desc).page(params[:page]).per(25)
+    @users = User.order(id: :desc).page(params[:page]).per(10)
   end
 
   def show
@@ -48,11 +48,17 @@ class UsersController < ApplicationController
     redirect_to root_url
   end
   
+  def likes
+    @user = User.find(params[:id])
+    @likes = @user.likes.page(params[:page])
+    #counts(@user)
+  end
+  
   
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation, :image)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
   
 end

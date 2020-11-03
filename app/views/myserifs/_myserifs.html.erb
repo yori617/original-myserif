@@ -4,14 +4,14 @@
       <img class="mr-2 rounded" src="<%= gravatar_url(myserif.user, { size: 50 }) %>" alt="">
       <div class="media-body">
         <div>
-          <%= link_to myserif.user.name, user_path(myserif.user) %> <span class="text-muted">posted at <%= myserif.created_at %></span>
+          <%= link_to myserif.user.name, user_path(myserif.user) %> <span class="text-muted">posted at <%= myserif.created_at.to_s(:datetime_jp) %></span>
         </div>
         <div>
           <p><%= myserif.content %></p>
         </div>
         <%= link_to '詳細へ', myserif_path(myserif), class: 'btn btn-secondary btn-sm' %>
-        <% if @user.id == current_user.id %>
-        <%= link_to '編集', edit_myserif_path(myserif), class: 'btn btn-dark btn-sm' %>
+        <% if current_user == myserif.user %>
+          <%= link_to '編集', edit_myserif_path(myserif), class: 'btn btn-dark btn-sm' %>
         <% end %>
       </div>
     </li>
