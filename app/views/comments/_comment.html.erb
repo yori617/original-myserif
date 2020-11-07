@@ -2,8 +2,8 @@
 <%= form_with(model: [@myserif, @comment], local: true) do |f| %>
     <div class="form-group">
         <%= f.text_area :content, placeholder: "一言コメント...", class: 'form-control' %><br/>
-    </div>
-     <%= f.submit "コメント送信", class: 'btn btn-outline-dark btn-sm' %>
+     <%= f.submit "📝コメント送信", class: 'btn btn-outline-dark btn-sm' %>
+     </div>
 <%end%>
 
 <p class="mt-3"><i class="fas fa-comment"></i>コメント一覧</p>

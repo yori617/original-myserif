@@ -41,8 +41,8 @@
   <img class="card-img-top" src="/assets/serif.jpg" alt="myserif">
    <div class="card-body">
       <h5 class="card-title">みんなのSerif</h5>
-      <p class="card-text">他の人が記録したセリフを見ることができます。素敵なセリフを見つけたら、<br>♡いいね️してみよう。</p>
-      <%= link_to "覗いてみる", myserifs_path, class: 'btn btn-dark' %>
+      <p class="card-text">他の人が記録したセリフを見ることができます。素敵なセリフを見つけたら、<br>♡いいね️してみよう。<br>ジャンル検索もできます。</p>
+      <%= link_to "覗いてみる🔍", myserifs_path, class: 'btn btn-dark' %>
     </div>
   </div>
   <div class="card">
@@ -50,7 +50,7 @@
     <div class="card-body">
       <h5 class="card-title">ユーザ一覧</h5>
       <p class="card-text">どんなユーザがいるのかを確認できます。みんなはどんなセリフを記録しているのかな。</p>
-      <%= link_to "覗いてみる", users_path, class: 'btn btn-dark' %>
+      <%= link_to "覗いてみる🔍", users_path, class: 'btn btn-dark' %>
     </div>
   </div>
   <div class="card">
@@ -58,7 +58,7 @@
     <div class="card-body">
       <h5 class="card-title">一言コメント</h5>
       <p class="card-text">他のユーザの記録に一言コメントを残すことができます。映画好き同士、想いを共有してみよう。</p>
-      <%= link_to "みんなのSerifへ", myserifs_path, class: 'btn btn-dark' %>
+      <%= link_to "みんなのSerifへ💬", myserifs_path, class: 'btn btn-dark' %>
     </div>
   </div>
 </div>
@@ -104,7 +104,7 @@
    <div class="card-body">
       <h5 class="card-title">みんなのSerif</h5>
       <p class="card-text">他の人が記録したセリフを見ることができます。素敵なセリフを見つけたら、<br>♡いいね️してみよう。</p>
-      <%= link_to "覗いてみる", myserifs_path, class: 'btn btn-dark' %>
+      <%= link_to "覗いてみる🔍", myserifs_path, class: 'btn btn-dark' %>
     </div>
   </div>
   <div class="card">
@@ -112,7 +112,7 @@
     <div class="card-body">
       <h5 class="card-title">ユーザ一覧</h5>
       <p class="card-text">どんなユーザがいるのかを確認できます。みんなはどんなセリフを記録しているのかな。</p>
-      <%= link_to "覗いてみる", users_path, class: 'btn btn-dark' %>
+      <%= link_to "覗いてみる🔍", users_path, class: 'btn btn-dark' %>
     </div>
   </div>
   <div class="card">
@@ -127,6 +127,6 @@
 </div>
 
 <p class="m-5">感動したセリフ、爆笑したセリフ、人生を変えたセリフ。<br>自分だけのセリフ集を作成しませんか。</p>
-<%= link_to "今すぐ登録する", signup_path, class: 'btn btn-dark btn-lg' %>
+<%= link_to "今すぐ登録する", signup_path, class: 'btn btn-outline-dark btn-lg' %>
 </div>
 <% end %>
