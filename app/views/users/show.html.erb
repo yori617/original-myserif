@@ -8,7 +8,7 @@
         <img class="rounded img-fluid m-5" src="<%= gravatar_url(@user, { size: 500 }) %>" alt="">
         <% if @user == current_user %>
           <%= link_to "セリフを投稿する", new_myserif_path, class: 'btn btn-dark' %>
-          <div class="m-3"><%= link_to 'ユーザ設定', edit_user_path, class: 'btn btn-secondary btn-sm' %></div>
+          <div class="m-3"><%= link_to 'ユーザ設定', edit_user_path, class: 'btn btn-outline-info btn-sm' %></div>
         <% end %>
       </div>
     </div>

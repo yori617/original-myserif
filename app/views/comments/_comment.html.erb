@@ -8,8 +8,9 @@
 
 <p class="mt-3"><i class="fas fa-comment"></i>コメント一覧</p>
 <% @myserif.comments.each do |comment| %>
+    <li class="media mb-3">
       <img class="rounded" src="<%= gravatar_url(comment.user, { size: 10 }) %>" alt="">
-      <div class="media-body">
+      <div class="media-body ml-3">
         <div>
           <%= link_to comment.user.name, user_path(comment.user) %> <span class="text-muted">posted at <%= comment.created_at.to_s(:datetime_jp) %></span>
         </div>
@@ -17,8 +18,9 @@
             <%= comment.content %>
         </div>
     <% if current_user == comment.user %>
-        <%= link_to "削除", myserif_comment_path(@myserif, comment), method: :delete, data: {confirm:'削除してもよろしいですか？'}, class: 'btn btn-dark btn-sm'%>
+        <%= link_to "削除", myserif_comment_path(@myserif, comment), method: :delete, data: {confirm:'削除してもよろしいですか？'}, class: 'btn btn-outline-dark btn-sm'%>
     <% end %>
+    </li>
 <% end %>
 </div>
 

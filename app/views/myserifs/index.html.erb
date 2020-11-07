@@ -5,14 +5,16 @@
 <% if logged_in? %>
 <div class="row">
   <div class="col-sm-4">
-    <%= link_to "セリフを投稿する", new_myserif_path, class: 'btn btn-dark btn-lg' %>
+    <%= link_to "セリフを投稿する", new_myserif_path, class: 'btn btn-dark' %>
+    <div class="mt-3">
     <%= form_tag(search_path, method: "get") do %>
       <%= select_tag(:genre, options_for_select([["ドラマ", "ドラマ"], ["恋愛", "恋愛"], ["ホラー", "ホラー"], ["SF", "SF"], ["コメディ", "コメディ"], ["ミュージカル", "ミュージカル"], ["学園/青春", "学園/青春"], ["アクション", "アクション"], ["アドベンチャー/冒険", "アドベンチャー/冒険"], ["戦争", "戦争"], ["クライム", "クライム"], ["サスペンス", "サスペンス"], ["ファンタジー", "ファンタジー"], ["ミステリー", "ミステリー"], ["ドキュメンタリー", "ドキュメンタリー"], ["ショートフィルム/短編", "ショートフィルム/短編"], ["サスペンス", "サスペンス"], ["アニメ", "アニメ"], ["ファミリー", "ファミリー"], ["ミステリー", "ミステリー"], ["時代劇", "時代劇"], ["伝記", "伝記"], ["歴史", "歴史"], ["パニック", "パニック"],["その他", "その他"]])) %>
-      <%= submit_tag "ジャンルで検索", class: 'btn btn-dark btn-sm' %>
+      <%= submit_tag "ジャンルで検索", class: 'btn btn-outline-secondary btn-sm' %>
     <% end %>
+    </div>
   </div>
 
-<div class="col-sm-8">
+<div class="col-sm-6">
 <% @myserifs.each do |myserif| %>
     <li class="media mb-3">
       <img class="mr-2 rounded" src="<%= gravatar_url(myserif.user, { size: 50 }) %>" alt="">
@@ -23,19 +25,26 @@
         <div>
           <p><%= myserif.content %></p>
         </div>
-        <%= link_to '詳細へ', myserif_path(myserif), class: 'btn btn-secondary btn-sm' %>
+        <%= link_to '詳細へ', myserif_path(myserif), class: 'btn btn-outline-dark btn-sm' %>
       </div>
-      
     </li>
  <% end %>
+ <%= paginate @myserifs %>
   </div>
 </div>
+
+
 <% else %>
 <div class="row">
-  <div class="col-sm-4">
-    <%= link_to "セリフを投稿する", new_myserif_path, class: 'btn btn-dark btn-lg' %>
+  <div class="col-sm-3">
+    <%= form_tag(search_path, method: "get") do %>
+      <%= select_tag(:genre, options_for_select([["ドラマ", "ドラマ"], ["恋愛", "恋愛"], ["ホラー", "ホラー"], ["SF", "SF"], ["コメディ", "コメディ"], ["ミュージカル", "ミュージカル"], ["学園/青春", "学園/青春"], ["アクション", "アクション"], ["アドベンチャー/冒険", "アドベンチャー/冒険"], ["戦争", "戦争"], ["クライム", "クライム"], ["サスペンス", "サスペンス"], ["ファンタジー", "ファンタジー"], ["ミステリー", "ミステリー"], ["ドキュメンタリー", "ドキュメンタリー"], ["ショートフィルム/短編", "ショートフィルム/短編"], ["サスペンス", "サスペンス"], ["アニメ", "アニメ"], ["ファミリー", "ファミリー"], ["ミステリー", "ミステリー"], ["時代劇", "時代劇"], ["伝記", "伝記"], ["歴史", "歴史"], ["パニック", "パニック"],["その他", "その他"]])) %>
+      <%= submit_tag "ジャンルで検索", class: 'btn btn-outline-secondary btn-sm' %>
+    <% end %>
   </div>
-<% @myserifs.each do |myserif| %>
+  
+<div class="col-sm-6">
+  <% @myserifs.each do |myserif| %>
     <li class="media mb-3">
       <img class="mr-2 rounded" src="<%= gravatar_url(myserif.user, { size: 50 }) %>" alt="">
       <div class="media-body">
@@ -45,8 +54,11 @@
         <div>
           <p><%= myserif.content %></p>
         </div>
-        <%= link_to '詳細へ', myserif_path(myserif), class: 'btn btn-secondary btn-sm' %>
+        <%= link_to '詳細へ', myserif_path(myserif), class: 'btn btn-outline-dark btn-sm' %>
       </div>
     </li>
  <% end %>
- <% end %>
+ <%= paginate @myserifs %>
+  </div>
+</div> 
+<% end %>

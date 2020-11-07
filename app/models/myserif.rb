@@ -8,7 +8,7 @@ class Myserif < ApplicationRecord
   
   has_many :genres
   
-  has_many :favorites
+  has_many :favorites, dependent: :destroy
   has_many :likes, through: :favorites, source: :users
   
   has_many :comments, dependent: :destroy

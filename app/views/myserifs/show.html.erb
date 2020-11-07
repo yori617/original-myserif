@@ -10,17 +10,17 @@
 </table>
 
 <div class="mt-3 row">
-    <div class="col-sm-4">
+    <div class="col-sm-3">
     <% if current_user == @myserif.user %>
         <%= link_to "セリフ削除", @myserif, method: :delete, data: { confirm: "本当に削除しても良いですか？" }, class: "btn btn-danger" %>
         <%= link_to 'マイページに戻る', user_path(current_user), class: 'btn btn-secondary btn-sm' %>
     <% else %>
-        <%= render "favorites/favorite_button", myserif: @myserif %>
         <%= link_to 'セリフ一覧へ戻る', myserifs_path, class: 'btn btn-secondary' %>
+        <%= render "favorites/favorite_button", myserif: @myserif %>
     <% end %>
     </div>
     
-    <div class="col-sm-8">
+    <div class="col-sm-9">
         <%= render "comments/comment", comment: @comment %>
     </div>
 </div>

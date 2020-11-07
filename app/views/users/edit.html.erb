@@ -17,8 +17,9 @@
         <%= f.label :email, 'メールアドレス' %>
         <%= f.email_field :email, class: 'form-control' %>
       </div>
-
-  <button type="button" class="btn btn-outline-secondary m-5" data-toggle="collapse" data-target="#setting">パスワードも変更する方はここをクリック</button>
+  <div class="text-center">
+    <button type="button" class="btn btn-outline-secondary my-5" data-toggle="collapse" data-target="#setting">パスワードも変更する方はここをクリック</button>
+  </div>
     <div id="setting" class="collapse">
       <div class="form-group">
         <%= f.label :password, '新しいパスワード' %>
@@ -34,7 +35,7 @@
       <%= f.submit '更新', class: 'btn btn-dark btn-block' %>
     <% end %>
     <div class="text-center m-5">
-      <%= link_to "退会する", user_path(current_user), class: "destroy-user btn btn-dark btn-sm", method: :delete, data: { confirm: "本当に退会されますか？" } %>
+      <%= link_to "退会する", user_path(current_user), class: "destroy-user btn btn-outline-danger btn-sm", method: :delete, data: { confirm: "本当に退会されますか？" } %>
     </div>
   </div>
 </div>

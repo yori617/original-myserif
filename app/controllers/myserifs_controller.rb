@@ -1,9 +1,9 @@
 class MyserifsController < ApplicationController
-  before_action :require_user_logged_in, except: [:index, :show]
+  before_action :require_user_logged_in, except: [:search, :index, :show]
   before_action :correct_user, only: [:destroy, :edit, :update]
   
   def index
-    @myserifs = Myserif.all.order(created_at: :desc)
+    @myserifs = Myserif.all.order(created_at: :desc).page(params[:page]).per(10)
   end
   
   def search
